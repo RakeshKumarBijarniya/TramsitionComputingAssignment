@@ -1,0 +1,26 @@
+body {
+  height: 600px;
+  background-image: linear-gradient(#ffff, yellow);
+}
+
+.table-container {
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+}
+
+table,
+th,
+td {
+  box-shadow: inset #000 3px 5px 5px 2px;
+  border: 3px solid black;
+  border-collapse: collapse;
+  font-size: 30px;
+  padding: 20px;
+}
+.heading {
+  color: green;
+}
