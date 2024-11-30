@@ -19,9 +19,18 @@ app.get("/", async (req, res) => {
   let feeStatus = apiData.isValuationFeePaid;
   let ukResident = apiData.isUkResident;
   let riskRating = apiData.riskRating;
-  let ltv = apiData.ltv;
-  ltv = Number(ltv.slice(0, ltv.length - 1));
+  let loanRequired = apiData.mortgage.loanRequired;
+  loanRequired = Number(
+    loanRequired.slice(1, loanRequired.length).split(",").join("")
+  );
+  let purchasePrice = apiData.mortgage.purchasePrice;
+  purchasePrice = Number(
+    purchasePrice.slice(1, purchasePrice.length).split(",").join("")
+  );
 
+  let ltv = (loanRequired / purchasePrice) * 100;
+  ltv = ltv.toFixed(2);
+  console.log(ltv);
   let checkAllConditions = 60 > ltv && ukResident && riskRating && feeStatus;
 
   res.render("dashboard.ejs", {
